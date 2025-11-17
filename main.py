@@ -79,8 +79,10 @@ def home():
                 const response = await fetch(`/intraday/${symbol}`);
                 const data = await response.json();
                 const lastPrice = data.prices[data.prices.length - 1];
-                document.getElementById('para1').textContent = `52-week low: $${data.prices.min()}`;
-                document.getElementById('para2').textContent = `52-week high: $${data.prices.max()}`;
+                const priceMin = data.prices.min();
+                const priceMax = data.prices.max();
+                document.getElementById('para1').textContent = `52-week low: $${priceMin}`;
+                document.getElementById('para2').textContent = `52-week high: $${priceMax}`;
                 document.getElementById('currentPrice').textContent = `Current Price: $${lastPrice.toFixed(2)}`;
 
                 const ctx = document.getElementById('stockChart').getContext('2d');
