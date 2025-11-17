@@ -42,14 +42,29 @@ def home():
                 margin-top: 20px;
                 background-color: #111; /* makes the chart area black */
             }
+            .para1 {
+                font-size: 16px;
+                font-weight: bold;
+                width: 25%;
+                float: left;
+              }
+              .para2 {
+                font-size: 16px;
+                font-size: 16px;
+                font-weight: bold;
+                width: 25%;
+                float: left;
+            }
         </style>
     </head>
     <body>
         <h1>📈 My Stock API</h1>
         <p>Enter a ticker symbol and press Enter or click "Show Graph"</p>
+        <p class="para1"> </p>
+        <p class="para2"> </p>
         <input id="symbol" placeholder="AAPL">
         <button onclick="drawGraph()">Show Graph</button>
-        <h1 id="currentPrice"><h1>
+        <p class="currentPrice"></p>
         <canvas id="stockChart" width="600" height="250"></canvas>
         <script>
             let chart;
@@ -59,6 +74,8 @@ def home():
                 const response = await fetch(`/intraday/${symbol}`);
                 const data = await response.json();
                 const lastPrice = data.prices[data.prices.length - 1];
+                document.getElementById('para1').textContent = `52-week low: $${data.prices.min()}`;
+                document.getElementById('para2').textContent = `52-week high: $${data.prices.max()}`;
                 document.getElementById('currentPrice').textContent = `Current Price: $${lastPrice.toFixed(2)}`;
 
                 const ctx = document.getElementById('stockChart').getContext('2d');
