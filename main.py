@@ -83,8 +83,8 @@ def home():
                 const lastPrice = data.prices[data.prices.length - 1];
                 const priceMin = Math.min(...data.prices);
                 const priceMax = Math.max(...data.prices);
-                document.getElementById('para1').textContent = `52-week low: $${priceMin.toFixed(2)}`;
-                document.getElementById('para2').textContent = `52-week high: $${priceMax.toFixed(2)}`;
+                document.getElementById('weekLow').textContent = `52-week low: $${priceMin.toFixed(2)}`;
+                document.getElementById('weekHigh').textContent = `52-week high: $${priceMax.toFixed(2)}`;
                 document.getElementById('currentPrice').textContent = `Current Price: $${lastPrice.toFixed(2)}`;
 
                 const ctx = document.getElementById('stockChart').getContext('2d');
