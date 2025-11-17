@@ -59,6 +59,8 @@ def home():
                 const response = await fetch(`/intraday/${symbol}`);
                 const data = await response.json();
                 const lastPrice = data.prices[data.prices.length - 1];
+                document.getElementById('currentPrice').textContent = `Current Price: $${lastPrice.toFixed(2)}`;
+
                 const ctx = document.getElementById('stockChart').getContext('2d');
                 if(chart) { chart.destroy(); }
 
@@ -92,7 +94,6 @@ def home():
                 if(event.key === "Enter") drawGraph();
             });
         </script>
-        document.getElementById('currentPrice').textContent = `Current Price: $${lastPrice.toFixed(2)}`;
 
     </body>
     </html>
