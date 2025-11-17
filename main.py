@@ -44,6 +44,11 @@ def home():
                     const data = await response.json();
                     document.getElementById('output').textContent = JSON.stringify(data, null, 2);
                 }
+                document.getElementById('symbol').addEventListener("keypress", function(event) {
+                  if (event.key === "Enter") {
+                    getPrice();
+                }
+                  });
             </script>
         </body>
     </html>
