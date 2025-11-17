@@ -72,7 +72,7 @@ def home():
             <p id="weekHigh" class="price-box"></p>
             <p id="currentPrice" class="price-box"></p>
         </div>
-        <canvas id="stockChart" width="600" height="250"></canvas>
+        <canvas id="stockChart" width="400" height="150"></canvas>
         <script>
             let chart;
 
