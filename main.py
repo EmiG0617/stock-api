@@ -49,8 +49,8 @@ def home():
         <p>Enter a ticker symbol and press Enter or click "Show Graph"</p>
         <input id="symbol" placeholder="AAPL">
         <button onclick="drawGraph()">Show Graph</button>
-        <canvas id="stockChart" width="600" height="250"></canvas>
         <h1 id="currentPrice">Current ${symbol} symbol Price:<h1>
+        <canvas id="stockChart" width="600" height="250"></canvas>
         <script>
             let chart;
 
@@ -59,7 +59,6 @@ def home():
                 const response = await fetch(`/intraday/${symbol}`);
                 const data = await response.json();
                 const currentPrice = data.prices[data.prices.length - 1];
-                document.getElementById('currentPrice').textContent = `Current Price: $${currenttPrice.toFixed(2)}`;
                 const ctx = document.getElementById('stockChart').getContext('2d');
                 if(chart) { chart.destroy(); }
 
@@ -87,6 +86,7 @@ def home():
                     }
                 });
             }
+            document.getElementById('currentPrice').textContent = `Current Price: $${currenttPrice.toFixed(2)}`;
 
             // Trigger Enter key
             document.getElementById('symbol').addEventListener("keypress", function(event){
