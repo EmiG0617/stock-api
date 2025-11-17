@@ -42,34 +42,36 @@ def home():
                 margin-top: 20px;
                 background-color: #111; /* makes the chart area black */
             }
-            .para1 {
-                font-size: 16px;
-                font-weight: bold;
-                width: 25%;
-                float: left;
-              }
-              .para2 {
-                font-size: 16px;
-                font-weight: bold;
-                width: 25%;
-                float: left;
+             /* 🌟 NEW — side-by-side price stats */
+            .price-container {
+                display: flex;
+                justify-content: center;
+                gap: 40px;
+                margin-top: 10px;
+                margin-bottom: 10px;
             }
-            .currentPrice {
+            .price-box {
+                background-color: #222;
+                padding: 10px 20px;
+                border-radius: 8px;
+                border: 1px solid #444;
                 font-size: 16px;
                 font-weight: bold;
-                width: 50%;
-                float: right;
-                }
+                min-width: 150px;
+            }
         </style>
-    </head>
-    <body>
+
         <h1>📈 My Stock API</h1>
-        <p>Enter a ticker symbol and press Enter or click "Show Graph"</p>
+
         <input id="symbol" placeholder="AAPL">
         <button onclick="drawGraph()">Show Graph</button>
-        <p id="para1"> </p>
-        <p id="para2"> </p>
-        <p id="currentPrice"></p>
+
+        <!-- 🌟 NEW — 3 Price Stats side-by-side -->
+        <div class="price-container">
+            <p id="weekLow" class="price-box"></p>
+            <p id="weekHigh" class="price-box"></p>
+            <p id="currentPrice" class="price-box"></p>
+        </div>
         <canvas id="stockChart" width="600" height="250"></canvas>
         <script>
             let chart;
@@ -81,8 +83,8 @@ def home():
                 const lastPrice = data.prices[data.prices.length - 1];
                 const priceMin = Math.min(...data.prices);
                 const priceMax = Math.max(...data.prices);
-                document.getElementById('para1').textContent = `52-week low: $${priceMin}`;
-                document.getElementById('para2').textContent = `52-week high: $${priceMax}`;
+                document.getElementById('para1').textContent = `52-week low: $${priceMin.toFixed(2)}`;
+                document.getElementById('para2').textContent = `52-week high: $${priceMax.toFixed(2)}`;
                 document.getElementById('currentPrice').textContent = `Current Price: $${lastPrice.toFixed(2)}`;
 
                 const ctx = document.getElementById('stockChart').getContext('2d');
