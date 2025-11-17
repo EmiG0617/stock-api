@@ -49,7 +49,7 @@ def home():
         <p>Enter a ticker symbol and press Enter or click "Show Graph"</p>
         <input id="symbol" placeholder="AAPL">
         <button onclick="drawGraph()">Show Graph</button>
-        <h1 id="currentPrice">Current ${symbol} symbol Price:<h1>
+        <h1 id="currentPrice"><h1>
         <canvas id="stockChart" width="600" height="250"></canvas>
         <script>
             let chart;
