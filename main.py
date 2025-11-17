@@ -134,7 +134,7 @@ def home():
 @app.get("/intraday/{symbol}")
 def intraday(symbol: str):
     ticker = yf.Ticker(symbol)
-    data = ticker.history(period="1y", interval="1m")
+    data = ticker.history(period="1y", interval="1mo")
 
     times = [t.strftime("%H:%M") for t in data.index]
     prices = [float(p) for p in data['Close']]
