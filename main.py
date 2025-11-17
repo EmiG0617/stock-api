@@ -16,7 +16,7 @@ def home():
                     padding: 12px 20px;
                     margin: 8px;
                     background: #4CAF50;
-                    color: white;
+                    color: black;
                     border: none;
                     border-radius: 6px;
                     cursor: pointer;
@@ -28,7 +28,7 @@ def home():
                 }
             </style>
         </head>
-        <body style= "text-align: center;">
+        <body style= "text-align: center;"><font color="white">
             <h1>📈 Stock API</h1>
             <p>Enter a ticker symbol (AAPL, TSLA, AMZN...)</p>
 
@@ -36,7 +36,7 @@ def home():
             <button onclick="getPrice()">Get Price</button>
 
             <pre id="output"></pre>
-
+            <a href="https://https://ranaroussi.github.io/yfinance/index.html">Visit yfinance documentation here</a>
             <script>
                 async function getPrice() {
                     const symbol = document.getElementById('symbol').value;
@@ -50,6 +50,7 @@ def home():
                 }
                   });
             </script>
+            </font>
         </body>
     </html>
     """
