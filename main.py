@@ -58,7 +58,7 @@ def home():
                 const symbol = document.getElementById('symbol').value.toUpperCase();
                 const response = await fetch(`/intraday/${symbol}`);
                 const data = await response.json();
-                const currentPrice = data.prices[data.prices.length - 1];
+                const lastPrice = data.prices[data.prices.length - 1];
                 const ctx = document.getElementById('stockChart').getContext('2d');
                 if(chart) { chart.destroy(); }
 
@@ -86,13 +86,13 @@ def home():
                     }
                 });
             }
-            document.getElementById('currentPrice').textContent = `Current Price: $${currenttPrice.toFixed(2)}`;
 
             // Trigger Enter key
             document.getElementById('symbol').addEventListener("keypress", function(event){
                 if(event.key === "Enter") drawGraph();
             });
         </script>
+        document.getElementById('currentPrice').textContent = `Current Price: $${lastPrice.toFixed(2)}`;
 
     </body>
     </html>
