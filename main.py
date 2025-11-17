@@ -50,20 +50,25 @@ def home():
               }
               .para2 {
                 font-size: 16px;
-                font-size: 16px;
                 font-weight: bold;
                 width: 25%;
                 float: left;
             }
+            .currentPrice {
+                font-size: 16px;
+                font-weight: bold;
+                width: 50%;
+                float: right;
+                }
         </style>
     </head>
     <body>
         <h1>📈 My Stock API</h1>
         <p>Enter a ticker symbol and press Enter or click "Show Graph"</p>
-        <p class="para1"> </p>
-        <p class="para2"> </p>
         <input id="symbol" placeholder="AAPL">
         <button onclick="drawGraph()">Show Graph</button>
+        <p class="para1"> </p>
+        <p class="para2"> </p>
         <p class="currentPrice"></p>
         <canvas id="stockChart" width="600" height="250"></canvas>
         <script>
