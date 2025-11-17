@@ -9,7 +9,7 @@ def home():
     return """
     <html>
         <head>
-            <title><h1 style="text-align: center;">My First Stock API</h1></title>
+            <title>My First Stock API</title>
             <style>
                 body { font-family: Arial; padding: 40px; }
                 button {
@@ -28,7 +28,7 @@ def home():
                 }
             </style>
         </head>
-        <body>
+        <body style= "text-align: center;">
             <h1>📈 Stock API</h1>
             <p>Enter a ticker symbol (AAPL, TSLA, AMZN...)</p>
 
