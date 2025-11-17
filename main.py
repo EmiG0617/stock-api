@@ -22,6 +22,7 @@ def home():
     <head>
         <title>Stock API Graph</title>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
         <style>
             body {
                 background-color: black;
@@ -40,9 +41,8 @@ def home():
             }
             canvas {
                 margin-top: 20px;
-                background-color: #111; /* makes the chart area black */
+                background-color: #111;
             }
-             /* 🌟 NEW — side-by-side price stats */
             .price-container {
                 display: flex;
                 justify-content: center;
@@ -60,19 +60,23 @@ def home():
                 min-width: 150px;
             }
         </style>
+    </head>
 
-        <h1>📈 My Stock API</h1>
+    <body>
+
+        <h1>📈 My First Stock API</h1>
 
         <input id="symbol" placeholder="AAPL">
         <button onclick="drawGraph()">Show Graph</button>
 
-        <!-- 🌟 NEW — 3 Price Stats side-by-side -->
         <div class="price-container">
             <p id="weekLow" class="price-box"></p>
             <p id="weekHigh" class="price-box"></p>
             <p id="currentPrice" class="price-box"></p>
         </div>
+
         <canvas id="stockChart" width="400" height="150"></canvas>
+
         <script>
             let chart;
 
@@ -80,15 +84,17 @@ def home():
                 const symbol = document.getElementById('symbol').value.toUpperCase();
                 const response = await fetch(`/intraday/${symbol}`);
                 const data = await response.json();
+
                 const lastPrice = data.prices[data.prices.length - 1];
                 const priceMin = Math.min(...data.prices);
                 const priceMax = Math.max(...data.prices);
+
                 document.getElementById('weekLow').textContent = `52-week low: $${priceMin.toFixed(2)}`;
                 document.getElementById('weekHigh').textContent = `52-week high: $${priceMax.toFixed(2)}`;
                 document.getElementById('currentPrice').textContent = `Current Price: $${lastPrice.toFixed(2)}`;
 
                 const ctx = document.getElementById('stockChart').getContext('2d');
-                if(chart) { chart.destroy(); }
+                if(chart) chart.destroy();
 
                 chart = new Chart(ctx, {
                     type: 'line',
@@ -97,7 +103,7 @@ def home():
                         datasets: [{
                             label: symbol + " Price",
                             data: data.prices,
-                            borderColor: 'white', // bright color for visibility
+                            borderColor: 'white',
                             backgroundColor: 'rgba(0,255,255,0.2)',
                             fill: false,
                         }]
@@ -108,14 +114,13 @@ def home():
                             legend: { labels: { color: 'white' } }
                         },
                         scales: {
-                            x: { ticks: { color: 'white' }, title: { display: true, text: 'Time', color: 'white' } },
-                            y: { ticks: { color: 'white' }, title: { display: true, text: 'Price ($)', color: 'white' } }
+                            x: { ticks: { color: 'white' }},
+                            y: { ticks: { color: 'white' }}
                         }
                     }
                 });
             }
 
-            // Trigger Enter key
             document.getElementById('symbol').addEventListener("keypress", function(event){
                 if(event.key === "Enter") drawGraph();
             });
