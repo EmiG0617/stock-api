@@ -50,6 +50,7 @@ def home():
         <input id="symbol" placeholder="AAPL">
         <button onclick="drawGraph()">Show Graph</button>
         <canvas id="stockChart" width="600" height="250"></canvas>
+        <h1 id="currentPrice">Current ${symbol} symbol Price:<h1>
         <script>
             let chart;
 
@@ -57,9 +58,9 @@ def home():
                 const symbol = document.getElementById('symbol').value.toUpperCase();
                 const response = await fetch(`/intraday/${symbol}`);
                 const data = await response.json();
-
+                const currentPrice = data.prices[data.prices.length - 1];
+                document.getElementById('currentPrice').textContent = `Current Price: $${currenttPrice.toFixed(2)}`;
                 const ctx = document.getElementById('stockChart').getContext('2d');
-
                 if(chart) { chart.destroy(); }
 
                 chart = new Chart(ctx, {
@@ -92,6 +93,7 @@ def home():
                 if(event.key === "Enter") drawGraph();
             });
         </script>
+
     </body>
     </html>
     """
