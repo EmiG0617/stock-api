@@ -67,9 +67,9 @@ def home():
         <p>Enter a ticker symbol and press Enter or click "Show Graph"</p>
         <input id="symbol" placeholder="AAPL">
         <button onclick="drawGraph()">Show Graph</button>
-        <p class="para1"> </p>
-        <p class="para2"> </p>
-        <p class="currentPrice"></p>
+        <p id="para1"> </p>
+        <p id="para2"> </p>
+        <p id="currentPrice"></p>
         <canvas id="stockChart" width="600" height="250"></canvas>
         <script>
             let chart;
@@ -79,8 +79,8 @@ def home():
                 const response = await fetch(`/intraday/${symbol}`);
                 const data = await response.json();
                 const lastPrice = data.prices[data.prices.length - 1];
-                const priceMin = data.prices.min();
-                const priceMax = data.prices.max();
+                const priceMin = Math.min(...data.prices);
+                const priceMax = Math.max(...data.prices);
                 document.getElementById('para1').textContent = `52-week low: $${priceMin}`;
                 document.getElementById('para2').textContent = `52-week high: $${priceMax}`;
                 document.getElementById('currentPrice').textContent = `Current Price: $${lastPrice.toFixed(2)}`;
